@@ -2,8 +2,8 @@
 
 PROJECT=links-backend;
 
-printf "Trying to remove the folder %s..." ${PROJECT};
-sudo rm -r ./links-backend;
+printf "Trying to remove the folder %s...\n" ${PROJECT};
+sudo rm -r ./${PROJECT};
 printf "\n";
 
 GITURL=https://github.com/git-uday-kiran/$PROJECT.git;
@@ -20,6 +20,10 @@ cd ../;
 printf "Build completed.\n";
 printf "\n";
 
+printf "Trying to remove the file %s..." ${PROJECT}.jar;
+sudo rm -r ./${PROJECT}.jar;
+printf "\n";
+
 printf "Copying the jar to current folder...\n"
 cp ./$PROJECT/target/$PROJECT.jar ./ || (echo "Failed copying..." && exit);
 printf "Copying done."
@@ -27,7 +31,7 @@ printf "\n\n";
 
 printf "Running jar file %s\n" ${PROJECT}.jar;
 JAR_RUN_CMD="screen java -jar ./${PROJECT}.jar &"
-printf "Executing command '%s'\n" ${JAR_RUN_CMD};
+printf "Executing command '%s'\n" "$JAR_RUN_CMD";
 ${JAR_RUN_CMD};
 
 printf "COMPLETED!!"
