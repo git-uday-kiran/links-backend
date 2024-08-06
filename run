@@ -30,7 +30,7 @@ printf "Copying done."
 printf "\n\n";
 
 printf "Running jar file %s\n" ${PROJECT}.jar;
-JAR_RUN_CMD="screen java -jar ./${PROJECT}.jar &"
+JAR_RUN_CMD="screen sudo java -jar ./${PROJECT}.jar &"
 printf "Executing command '%s'\n" "$JAR_RUN_CMD";
 ${JAR_RUN_CMD};
 
