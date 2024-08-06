@@ -19,7 +19,7 @@ public class LinksBackendApplication {
 	}
 
 
-	@Bean
+//	@Bean
 	BeanPostProcessor beanPostProcessor() {
 		return new BeanPostProcessor() {
 			public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {

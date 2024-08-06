@@ -1,0 +1,34 @@
+#!/usr/bin/bash
+
+PROJECT=links-backend;
+
+printf "Trying to remove the folder %s..." ${PROJECT};
+sudo rm -r ./links-backend;
+printf "\n";
+
+GITURL=https://github.com/git-uday-kiran/$PROJECT.git;
+printf "\nFetching from %s...\n" ${GITURL};
+git clone $GITURL
+
+printf "Cloned the project %s." ${PROJECT};
+printf "\n\n";
+
+printf "Building...\n";
+cd ./$PROJECT/ || (echo "can't get into the directory $PROJECT" && exit);
+mvn install;
+cd ../;
+printf "Build completed.\n";
+printf "\n";
+
+printf "Copying the jar to current folder...\n"
+cp ./$PROJECT/target/$PROJECT.jar ./ || (echo "Failed copying..." && exit);
+printf "Copying done."
+printf "\n\n";
+
+printf "Running jar file %s\n" ${PROJECT}.jar;
+JAR_RUN_CMD="screen java -jar ./${PROJECT}.jar &"
+printf "Executing command '%s'\n" ${JAR_RUN_CMD};
+${JAR_RUN_CMD};
+
+printf "COMPLETED!!"
+
